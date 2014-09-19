@@ -1,8 +1,8 @@
         program polinom
-        parameter(n = 100, m = 20)
+        parameter(n = 100, m = 10)
         dimension x(n*m), y(n*m), z(n*m)
 
-        open (10, FILE='function5.dat')
+        open (10, FILE='function.dat')
 
 
 !        n=100
@@ -10,6 +10,7 @@
         a=-8.0
         b=8.0
         h=(b-a)/m
+        c=(b-a)/n
         d=h/n
 
         do I=1, m
@@ -31,11 +32,20 @@
               write (10,*) z(I), s
         end do
 
+        open (9, file='function1.dat')
+        do I=1,100
+          x(I)=a+(I-1)*c
+          y(I)=fun(x(I))
+          write (9,*) x(I), y(I)
+        end do
+
+
+        close (9)
         close (10)
         end program
 
 
         function fun(x)
-          fun=exp(sin(x))
+          fun=cos(x)
           return
         end
