@@ -1,5 +1,5 @@
         program polinom
-        parameter(n = 100, m = 10)
+        parameter(n = 40, m = 200)
         dimension x(n*m), y(n*m), z(n*m)
 
         open (10, FILE='function.dat')
@@ -10,7 +10,6 @@
         a=-8.0
         b=8.0
         h=(b-a)/m
-        c=(b-a)/n
         d=h/n
 
         do I=1, m
@@ -33,8 +32,8 @@
         end do
 
         open (9, file='function1.dat')
-        do I=1,100
-          x(I)=a+(I-1)*c
+        do I=1,m*n
+          x(I)=a+(I-1)*d
           y(I)=fun(x(I))
           write (9,*) x(I), y(I)
         end do
@@ -46,6 +45,6 @@
 
 
         function fun(x)
-          fun=cos(x)
+          fun=1/(0.5+(x**2))
           return
         end
